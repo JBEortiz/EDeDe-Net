@@ -2,17 +2,20 @@ package app.data;
 
 import app.enums.Category;
 import app.enums.Punctuation;
-
-public class Flim extends Multimedia{
+/*
+ * @autor Juan 
+ * @date 
+ */
+public class Film extends Multimedia{
 	
 	private String duration;
 
-	public Flim(String name, String year, Category category, Punctuation puntuation, String duration) {
+	public Film(String name, String year, Category category, Punctuation puntuation, String duration) {
 		super(name, year, category, puntuation);
 		this.duration = duration;
 	}
 
-	public Flim(String name, String year, Category category, Punctuation puntuation) {
+	public Film(String name, String year, Category category, Punctuation puntuation) {
 		super(name, year, category, puntuation);
 	}
 

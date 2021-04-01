@@ -1,31 +1,24 @@
 package app.repository;
 
-import app.data.Flim;
+import app.data.Film;
 
-public class FilmRepositoryImpl implements IGenericRepository<Flim>{
+public class FilmRepositoryImpl implements IGenericRepository<Film>{
 
 	@Override
-	public void create(Flim t) {
-		// TODO Apéndice de método generado automáticamente
-		
+	public void create(Film t) {
 	}
 
 	@Override
-	public Flim read(String name) {
-		// TODO Apéndice de método generado automáticamente
+	public Film read(String name) {
 		return null;
 	}
 
 	@Override
-	public void update(Flim t) {
-		// TODO Apéndice de método generado automáticamente
-		
+	public void update(Film t) {
 	}
 
 	@Override
-	public void delete(Flim t) {
-		// TODO Apéndice de método generado automáticamente
-		
+	public void delete(Film t) {
 	}
 
 }
