@@ -18,6 +18,9 @@ public class Serie extends Multimedia{
 		super(name, year, category, puntuation);
 	}
 
+	public Serie() {
+		
+	}
 	public List<Season> getSeasons() {
 		return Seasons;
 	}

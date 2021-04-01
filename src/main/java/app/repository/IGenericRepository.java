@@ -1,6 +1,9 @@
 package app.repository;
 
-public interface IGenericRepository<T> {
+import java.io.IOException;
+import java.util.Map;
+
+public interface IGenericRepository<T,E> {
 	
 	void create(T t);
 	
@@ -9,6 +12,8 @@ public interface IGenericRepository<T> {
 	void update(T t);
 	
 	void delete(T t);
+	
+	public Map<E,T> readAll() throws IOException;
 	
 	
 }

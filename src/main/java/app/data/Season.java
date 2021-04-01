@@ -2,18 +2,19 @@ package app.data;
 
 public class Season {
 	
-	private int number;
+	private Integer id;
 	private String name;
+	private static int finalId;
 
 	
-	public Season(int number, String name) {
+	public Season( String name) {
 		super();
-		this.number = number;
 		this.name = name;
 	}
 
 	public Season() {
 		super();
+		this.id=++finalId;
 	}
 
 	public String getName() {
@@ -24,19 +25,13 @@ public class Season {
 		this.name = name;
 	}
 
-	public int getNumber() {
-		return number;
-	}
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
 	@Override
 	public String toString() {
-		return "Season [number=" + number + ", name=" + name + "]";
+		return "Season [id=" + id + ", name=" + name + "]";
 	}
 
+
+	
 	
 	
 	
