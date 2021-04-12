@@ -13,9 +13,11 @@ public abstract class  Controller<T>  {
 	
 	abstract void delete(T t);
 	
-	abstract void createWhitList(List<T> t);
+	abstract void createWhitList();
 	
-	abstract List<T> orderByPuntuation(List<T> t);
+	abstract List<T> orderByPuntuation();
+	
+	abstract List<T> readAll();
 	
 
 }

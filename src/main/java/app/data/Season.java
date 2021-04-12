@@ -10,6 +10,7 @@ public class Season {
 	public Season( String name) {
 		super();
 		this.name = name;
+		this.id=++finalId;
 	}
 
 	public Season() {
@@ -27,7 +28,7 @@ public class Season {
 
 	@Override
 	public String toString() {
-		return "Season [id=" + id + ", name=" + name + "]";
+		return "(" + id + " " + name + ")";
 	}
 
 

@@ -4,8 +4,8 @@ import app.enums.Category;
 import app.enums.Punctuation;
 
 /*
- * @autor Juan 
- * @date 
+ * @
+ * 
  */
 public class Film extends Multimedia {
 
@@ -34,8 +34,8 @@ public class Film extends Multimedia {
 
 	@Override
 	public String toString() {
-		return "Flim [duration=" + duration + ", getName()=" + getName() + ", getYear()=" + getYear()
-				+ ", getCategory()=" + getCategory() + ", getPuntuation()=" + getPuntuation();
+		return "Title: " + getName() + " Year: " + getYear()
+				+ " Category: " + getCategory() + " Puntuation: " + getPuntuation()+" Duration: " + duration;
 	}
 
 }

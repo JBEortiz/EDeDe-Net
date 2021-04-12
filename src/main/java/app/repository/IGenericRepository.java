@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface IGenericRepository<T,E> {
 	
-	void create(T t);
+	void create(T t) throws IOException;
 	
 	T read(String name);
 	

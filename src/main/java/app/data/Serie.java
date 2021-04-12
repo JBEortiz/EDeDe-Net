@@ -31,8 +31,8 @@ public class Serie extends Multimedia{
 
 	@Override
 	public String toString() {
-		return "Serie [Seasons=" + Seasons + ", getName()=" + getName() + ", getYear()=" + getYear()
-				+ ", getCategory()=" + getCategory() + ", getPuntuation()=" + getPuntuation();
+		return "Name: " + getName() + " Year: " + getYear()
+				+ " C: " + getCategory() + " P: " + getPuntuation()+"\n --- "+ Seasons+ "---";
 	}
 	
 
