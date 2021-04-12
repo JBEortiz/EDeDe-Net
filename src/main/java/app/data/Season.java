@@ -1,21 +1,30 @@
 package app.data;
 
+import app.enums.Category;
+import app.enums.Punctuation;
+
+/*
+ * The seasons class will be the smallest
+ * class where we will only
+ * have the name of the season
+ */
 public class Season {
 	
-	private Integer id;
 	private String name;
-	private static int finalId;
 
-	
+	/*
+	 * Builder with all parameters
+	 */
 	public Season( String name) {
 		super();
 		this.name = name;
-		this.id=++finalId;
 	}
 
+	/* 
+	 * default constructor
+	 */
 	public Season() {
 		super();
-		this.id=++finalId;
 	}
 
 	public String getName() {
@@ -28,7 +37,7 @@ public class Season {
 
 	@Override
 	public String toString() {
-		return "(" + id + " " + name + ")";
+		return "( " + name + ")";
 	}
 
 

@@ -35,8 +35,14 @@ public class SongController extends Controller<Song> {
 
 	@Override
 	public Song read(String name) {
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		Song song= null;
+		try {
+			song = service.read(name);
+			System.out.println(song);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return song;
 	}
 
 	@Override

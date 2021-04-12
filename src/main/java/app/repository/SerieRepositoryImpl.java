@@ -61,14 +61,16 @@ public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 
 	@Override
 	public Map<String, Serie> readAll() throws IOException {
-		List<Season> seasons = new ArrayList<>();
-
+		List<Season> seasonsAll = new ArrayList<>();
+		List<Season> seasonsFiler = new ArrayList<>();
 		FileReader reader = new FileReader(new File("serie.txt"));
 		BufferedReader br = new BufferedReader(reader);
 
 		String input;
 		String inputSeasons = null;
 		while ((input = br.readLine()) != null) {
+			seasonsAll.clear();
+			
 			Serie serie = new Serie();
 			String[] value = input.split(",");
 			serie.setName(value[0]);
@@ -79,14 +81,16 @@ public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 
 			String[] valueSeaseons = inputSeasons.split("/");
 			for (int i = 0; i < valueSeaseons.length; i++) {
-				seasons.add(new Season(valueSeaseons[i]));
+				seasonsAll.add(new Season(valueSeaseons[i]));
+				
 			}
-
-			serie.setSeasons(seasons);
-
+			
+			seasonsFiler = seasonsAll;
+			serie.setSeasons(seasonsFiler);
 			series.put(serie.getName(), serie);
+			
 		}
-
+		
 		br.close();
 		return series;
 	}

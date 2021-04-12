@@ -62,7 +62,7 @@ public class SongServiceImpl extends Service<Song>{
 	public Song read(String name)throws IOException {
 		Scanner sc = new Scanner(System.in);
 		Song findSong = null;
-		System.out.println("Enter the movie you want to find");
+		System.out.println("Enter the song you want to find");
 		String nameSong = sc.nextLine();
 
 		Map<String, Song> listSongs = repository.readAll();

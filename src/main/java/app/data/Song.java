@@ -1,11 +1,19 @@
 package app.data;
-
+/*
+ * The sound class, 
+ * although it is related to Series and movies,
+ * does not have the same format 
+ * therefore it will not extend multimedia
+ */
 public class Song {
 
 	private String name;
 	private String autor;
 	private String duration;
 
+	/*
+	 * Builder with all parameters
+	 */
 	public Song(String name, String autor, String duration) {
 		super();
 		this.name = name;
@@ -13,6 +21,9 @@ public class Song {
 		this.duration = duration;
 	}
 
+	/* 
+	 * default constructor
+	 */
 	public Song() {
 		super();
 	}
