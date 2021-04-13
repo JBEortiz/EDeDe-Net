@@ -117,5 +117,50 @@ public class FilmController extends Controller<Film> {
 		}
 		return films;
 	}
+	
+	
+	public List<Film> orderByName(){
+		List<Film> films = null;
+		try {
+			films = service.orderByName();
+			for (Film film : films) {
+				System.out.println(film);
+			}
+		} catch (IOException e) {
+			System.out.println("Error when find all");
+			e.printStackTrace();
+		}
+		return films;
+		
+	}
 
+	public List<Film> findByCategory(String category){
+		List<Film> films = null;
+		try {
+			films = service.findByCategory(category);
+			for (Film film : films) {
+				System.out.println(film);
+			}
+		} catch (IOException e) {
+			System.out.println("Error when find all");
+			e.printStackTrace();
+		}
+		return films;
+		
+	}
+	
+	public List<Film> findByPuntuation(String puntuation){
+		List<Film> films = null;
+		try {
+			films = service.findByPuntuation(puntuation);
+			for (Film film : films) {
+				System.out.println(film);
+			}
+		} catch (IOException e) {
+			System.out.println("Error when find all");
+			e.printStackTrace();
+		}
+		return films;
+		
+	}
 }

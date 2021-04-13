@@ -16,6 +16,7 @@ import app.data.Serie;
 import app.enums.Category;
 import app.enums.Punctuation;
 import app.main.App;
+import app.utils.Constant;
 
 public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 
@@ -61,9 +62,14 @@ public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 
 	@Override
 	public Map<String, Serie> readAll() throws IOException {
+		
+		if (! (new File(Constant.FILE_NAME_SERIE)).exists() ) {
+			 System.out.println("File example.txt not found");
+			 }
+		
 		List<Season> seasonsAll = new ArrayList<>();
 		List<Season> seasonsFiler = new ArrayList<>();
-		FileReader reader = new FileReader(new File("serie.txt"));
+		FileReader reader = new FileReader(new File(Constant.FILE_NAME_SERIE));
 		BufferedReader br = new BufferedReader(reader);
 
 		String input;
@@ -72,14 +78,14 @@ public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 			seasonsAll.clear();
 			
 			Serie serie = new Serie();
-			String[] value = input.split(",");
+			String[] value = input.split(Constant.SEPARATOR);
 			serie.setName(value[0]);
 			serie.setYear(value[1]);
 			serie.setCategory(Category.valueOf(value[2]));
 			serie.setPuntuation(Punctuation.valueOf(value[3]));
 			inputSeasons = value[4];
 
-			String[] valueSeaseons = inputSeasons.split("/");
+			String[] valueSeaseons = inputSeasons.split(Constant.SEPARATOR_SEASON);
 			for (int i = 0; i < valueSeaseons.length; i++) {
 				seasonsAll.add(new Season(valueSeaseons[i]));
 				
