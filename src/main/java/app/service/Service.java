@@ -19,7 +19,7 @@ public abstract class Service<T>  {
 	
 	abstract List<T> createWhitList() throws IOException;
 	
-	abstract List<T> orderByPuntuation() throws IOException;
+	abstract List<T> orderByName() throws IOException;
 	
 	abstract List<T> readAll() throws IOException;
 	

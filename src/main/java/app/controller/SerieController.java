@@ -51,9 +51,8 @@ public class SerieController extends Controller<Serie> {
 	}
 
 	@Override
-	List<Serie> orderByPuntuation() {
+	void orderByName() {
 		// TODO Apéndice de método generado automáticamente
-		return null;
 	}
 
 	@Override

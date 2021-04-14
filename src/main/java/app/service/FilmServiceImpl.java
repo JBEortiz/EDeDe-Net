@@ -203,25 +203,19 @@ public class FilmServiceImpl extends Service<Film> {
 
 		return filmsWhitList;
 	}
-
-	/*
-	 * method that will sort by the desired score
-	 * and that returns a list
-	 */
+	
+	
 	@Override
-	public List<Film> orderByPuntuation() throws IOException {
+	public List<Film> orderByName() throws IOException {
 		List<Film> listOrder = new ArrayList<>();
 		Map<String, Film> listFilms = repository.readAll();
 		for (Map.Entry<String, Film> film : listFilms.entrySet()) {
 			listOrder.add(film.getValue());
 		}
 
-		/*
-		 * we use compareTo 
-		 */
 		listOrder.sort(new Comparator<Film>() {
 			public int compare(Film puntuation1, Film puntuation2) {
-				return puntuation1.getPuntuation().compareTo(puntuation2.getPuntuation());
+				return puntuation1.getName().compareTo(puntuation2.getName());
 			}
 		});
 
@@ -363,16 +357,23 @@ public class FilmServiceImpl extends Service<Film> {
 	 * METHODS THAT ARE NOT IN COMMON SPECIFIC TO THE ENTITY
 	 */
 
-	public List<Film> orderByName() throws IOException {
+	/*
+	 * method that will sort by the desired score
+	 * and that returns a list
+	 */
+	public List<Film> orderByPuntuation() throws IOException {
 		List<Film> listOrder = new ArrayList<>();
 		Map<String, Film> listFilms = repository.readAll();
 		for (Map.Entry<String, Film> film : listFilms.entrySet()) {
 			listOrder.add(film.getValue());
 		}
 
+		/*
+		 * we use compareTo 
+		 */
 		listOrder.sort(new Comparator<Film>() {
 			public int compare(Film puntuation1, Film puntuation2) {
-				return puntuation1.getName().compareTo(puntuation2.getName());
+				return puntuation1.getPuntuation().compareTo(puntuation2.getPuntuation());
 			}
 		});
 

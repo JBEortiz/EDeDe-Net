@@ -56,7 +56,7 @@ public class SerieServiceImpl extends Service<Serie> {
 	}
 
 	@Override
-	List<Serie> orderByPuntuation() throws IOException {
+	List<Serie> orderByName() throws IOException {
 		List<Serie> series= new ArrayList<Serie>();
 		Map<String, Serie> listSeries = repository.readAll();
 		for (Map.Entry<String, Serie> serie : listSeries.entrySet()) {
@@ -65,7 +65,7 @@ public class SerieServiceImpl extends Service<Serie> {
 		
 		series.sort(new Comparator<Serie>() {
 			public int compare(Serie puntuation1, Serie puntuation2) {
-				return puntuation1.getCategory().compareTo(puntuation2.getCategory());
+				return puntuation1.getName().compareTo(puntuation2.getName());
 			}
 		});
 		

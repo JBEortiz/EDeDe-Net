@@ -119,7 +119,7 @@ public class MenuConfig {
 				songsController.create(song);
 				break;
 			case 3:
-				songsController.orderByPuntuation();
+				songsController.orderByName();
 				break;
 			case 4:
 				songsController.delete(song);
@@ -145,11 +145,13 @@ public class MenuConfig {
 			System.out.println("hello selec option");
 			System.out.println("1 readAll");
 			System.out.println("2 create");
-			System.out.println("3 orderByPuntuation");
+			System.out.println("3 orderByName");
 			System.out.println("4 delete");
 			System.out.println("5 update");
 			System.out.println("6 read");
-			System.out.println("3 orderByPuntuation");
+			System.out.println("7 createWhitList");
+			System.out.println("8 findByAutor");
+			System.out.println("9 orderByAutor");
 			select = sc.nextInt();
 		switch (select) {
 
@@ -160,7 +162,7 @@ public class MenuConfig {
 			songsController.create(song);
 			break;
 		case 3:
-			songsController.orderByPuntuation();
+			songsController.orderByName();
 			break;
 		case 4:
 			songsController.delete(song);
@@ -170,6 +172,14 @@ public class MenuConfig {
 			break;
 		case 6:
 			songsController.read(name);
+		case 7:
+			songsController.createWhitList();
+			break;
+		case 8:
+			songsController.findByAutor(name);;
+			break;
+		case 9:
+			songsController.orderByAutor();
 			break;
 
 		}

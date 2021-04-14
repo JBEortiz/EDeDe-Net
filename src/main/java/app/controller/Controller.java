@@ -15,7 +15,7 @@ public abstract class  Controller<T>  {
 	
 	abstract void createWhitList();
 	
-	abstract List<T> orderByPuntuation();
+	abstract void orderByName();
 	
 	abstract List<T> readAll();
 	

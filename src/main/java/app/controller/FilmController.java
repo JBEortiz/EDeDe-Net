@@ -1,6 +1,7 @@
 package app.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import app.data.Film;
@@ -75,92 +76,105 @@ public class FilmController extends Controller<Film> {
 
 	@Override
 	public void createWhitList() {
+		List<Film> filmsWhitList = new ArrayList<>();
 		try {
-			List<Film> filmsWhitList = service.createWhitList();
-			for (Film film : filmsWhitList) {
-				System.out.println(film.toString());
-			}
+			filmsWhitList = service.createWhitList();
+			
 		} catch (IOException e) {
 			System.out.println("esto no va muy bien ");
 			e.printStackTrace();
 		}
+		if(!filmsWhitList.isEmpty()) {
+			filmsWhitList.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
+		}
 
 	}
 
-	@Override
 	public List<Film> orderByPuntuation() {
 
 		List<Film> filmsOrder = null;
 		try {
 			filmsOrder = service.orderByPuntuation();
-			for (Film film : filmsOrder) {
-				System.out.println(film.toString());
-			}
 		} catch (IOException e) {
 			System.out.println("Error when ordering");
 			e.printStackTrace();
+		}
+		if(!filmsOrder.isEmpty()) {
+			filmsOrder.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
 		}
 		return filmsOrder;
 	}
 
 	@Override
 	public List<Film> readAll() {
-		List<Film> films = null;
+		List<Film> films = new ArrayList<>();
 		try {
 			films = service.readAll();
-			for (Film film : films) {
-				System.out.println(film);
-			}
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
+		}
+		if(!films.isEmpty()) {
+			films.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
 		}
 		return films;
 	}
 	
-	
-	public List<Film> orderByName(){
-		List<Film> films = null;
+	@Override
+	public void orderByName(){
+		List<Film> films = new ArrayList<>();
 		try {
 			films = service.orderByName();
-			for (Film film : films) {
-				System.out.println(film);
-			}
+
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return films;
+		if(!films.isEmpty()) {
+			films.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
+		}
 		
 	}
 
-	public List<Film> findByCategory(String category){
-		List<Film> films = null;
+	public void findByCategory(String category){
+		List<Film> films = new ArrayList<>();
 		try {
 			films = service.findByCategory(category);
-			for (Film film : films) {
-				System.out.println(film);
-			}
+
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return films;
+		if(!films.isEmpty()) {
+			films.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
+		}
 		
 	}
 	
-	public List<Film> findByPuntuation(String puntuation){
-		List<Film> films = null;
+	public void findByPuntuation(String puntuation){
+		List<Film> films = new ArrayList<>();
 		try {
 			films = service.findByPuntuation(puntuation);
-			for (Film film : films) {
-				System.out.println(film);
-			}
+
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return films;
+		if(!films.isEmpty()) {
+			films.forEach(film->System.out.println(film.toString()));
+		}else{
+			System.out.println("la lista esta vacia");
+		}
 		
 	}
 }
