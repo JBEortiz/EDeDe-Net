@@ -46,12 +46,7 @@ public class SongServiceImpl extends Service<Song>{
 		listSongs.put(createSong.getName(), createSong);
 		File archivo = new File("song.txt");
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
-			for (Map.Entry<String, Song> song : listSongs.entrySet()) {
-				b.append(song.getValue().getName().concat(",")
-						.concat(song.getValue().getAutor()).concat(",")
-						.concat(song.getValue().getDuration())).append("\n");
-			}
-			b.close();
+			writeFile(listSongs, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -96,11 +91,8 @@ public class SongServiceImpl extends Service<Song>{
 	}
 	
 	public List<Song> orderByAutor() throws IOException {
-		List<Song> listOrder = new ArrayList<>();
 		Map<String, Song> listSongs = repository.readAll();
-		for (Map.Entry<String, Song> song : listSongs.entrySet()) {
-			listOrder.add(song.getValue());
-		}
+		List<Song> listOrder = createList(listSongs);
 
 		listOrder.sort(new Comparator<Song>() {
 			public int compare(Song autor1, Song autor2) {
@@ -115,27 +107,20 @@ public class SongServiceImpl extends Service<Song>{
 	public void update(Song updateSong) throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie you want to find");
-		String nameSong = sc.nextLine();
+		String nameSong = sc.next();
 
 		Map<String, Song> listSongs = repository.readAll();
 
 		updateSong = listSongs.get(nameSong);
 		System.out.println(updateSong);
-
-		
 		System.out.println("write the Author");
-		updateSong.setAutor(sc.nextLine());
+		updateSong.setAutor(sc.next());
 		System.out.println("write the duration");
-		updateSong.setDuration(sc.nextLine());
+		updateSong.setDuration(sc.next());
 		listSongs.put(updateSong.getName(), updateSong);
 		File archivo = new File("song.txt");
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
-			for (Map.Entry<String, Song> song : listSongs.entrySet()) {
-				b.append(song.getValue().getName().concat(",")
-						.concat(song.getValue().getAutor()).concat(",")
-						.concat(song.getValue().getDuration())).append("\n");
-			}
-			b.close();
+			writeFile(listSongs, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -154,12 +139,7 @@ public class SongServiceImpl extends Service<Song>{
 		listSongs.remove(nameSong);
 		File archivo = new File("song.txt");
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
-			for (Map.Entry<String, Song> song : listSongs.entrySet()) {
-				b.append(song.getValue().getName().concat(",")
-						.concat(song.getValue().getAutor()).concat(",")
-						.concat(song.getValue().getDuration())).append("\n");
-			}
-			b.close();
+			writeFile(listSongs, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -169,31 +149,23 @@ public class SongServiceImpl extends Service<Song>{
 
 	@Override
 	public List<Song> orderByName() throws IOException {
-		List<Song> listOrder = new ArrayList<>();
 		Map<String, Song> listSongs = repository.readAll();
-		for (Map.Entry<String, Song> song : listSongs.entrySet()) {
-			listOrder.add(song.getValue());
-		}
-
+		List<Song> listOrder = createList(listSongs);
 		listOrder.sort(new Comparator<Song>() {
 			public int compare(Song puntuation1, Song puntuation2) {
-				return puntuation1.getName().compareTo(puntuation2.getName());
+				return puntuation1.getName().compareToIgnoreCase(puntuation2.getName());
 			}
 		});
 
 		return listOrder;
 	}
 
+
 	@Override
 	public List<Song> readAll() throws IOException {
-		Map<String, Song> songsMap = repository.readAll();
-
-		List<Song> listOrder = new ArrayList<>();
-		for (Map.Entry<String, Song> song : songsMap.entrySet()) {
-			listOrder.add(song.getValue());
-		}
-
-		return listOrder;
+		Map<String, Song> listSongs = repository.readAll();
+		List<Song> list = createList(listSongs);
+		return list;
 	}
 	
 	/*
@@ -219,6 +191,7 @@ public class SongServiceImpl extends Service<Song>{
 		
 		do {
 			System.out.println("Enter the movie you want to find");
+			System.out.println("write exit to finish");
 			nameSongs = sc.nextLine();
 			
 			for (Map.Entry<String, Song> song : listSongs.entrySet()) {
@@ -252,6 +225,29 @@ public class SongServiceImpl extends Service<Song>{
 		}
 
 		return songsWhitList;
+	}
+	
+	/*
+	 * method that writes to file to save code
+	 * and give standard format
+	 */
+	public BufferedWriter writeFile(Map<String, Song> listSongs, BufferedWriter b) throws IOException {
+		for (Map.Entry<String, Song> song : listSongs.entrySet()) {
+			b.append(song.getValue().getName().concat(Constant.SEPARATOR)
+					.concat(song.getValue().getAutor()).concat(Constant.SEPARATOR)
+					.concat(song.getValue().getDuration())).append(Constant.LINE_BREAK);
+		}
+		
+		b.close();
+		return b;
+	}
+	
+	private List<Song> createList(Map<String, Song> listSongs) {
+		List<Song> list= new ArrayList<>();
+		for (Map.Entry<String, Song> song : listSongs.entrySet()) {
+			list.add(song.getValue());
+		}
+		return list;
 	}
 	
 

@@ -5,10 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 import app.data.Film;
-
+/* abstract class
+ * that it has has in addition 
+ * to the basic crude specific methods that 
+ * all entities share, although each of them already
+ * have other specific methods that they do not share
+ * 
+ */
 public abstract class Service<T>  {
 
 
+	/*
+	 * Exception handling that 
+	 * the handler will have
+	 */
 	abstract void create(T t) throws IOException;
 	
 	abstract T read(String name) throws IOException;

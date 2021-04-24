@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import app.data.Film;
+import app.data.Song;
 import app.enums.Category;
 import app.enums.Punctuation;
-import app.main.App;
 import app.repository.FilmRepositoryImpl;
 import app.utils.Constant;
 /*
@@ -60,59 +60,23 @@ public class FilmServiceImpl extends Service<Film> {
 		System.out.println("write the category");
 		System.out.println("1 TERROR, 2 LOVE, 3 FIGHTS, 4 ACTION, 5 DRAMA, 6 COMEDY");
 		int option = sc.nextInt();
-		switch (option) {
-		case 1:
-			createFilm.setCategory(Category.TERROR);
-			break;
-		case 2:
-			createFilm.setCategory(Category.LOVE);
-			break;
-		case 3:
-			createFilm.setCategory(Category.FIGHTS);
-			break;
-		case 4:
-			createFilm.setCategory(Category.ACTION);
-			break;
-		case 5:
-			createFilm.setCategory(Category.DRAMA);
-			break;
-		case 6:
-			createFilm.setCategory(Category.COMEDY);
-			break;
-		}
+		optionCategory(option,createFilm);
 
 		System.out.println("write the Puntuation");
 		System.out.println("1 VERY_BAD, 2  BAD, 3 GOOD, 4 VERYGOOD, 5 EXCELENT");
 		int optionPuntiation = sc.nextInt();
-		switch (optionPuntiation) {
-		case 1:
-			createFilm.setPuntuation(Punctuation.VERY_BAD);
-			break;
-		case 2:
-			createFilm.setPuntuation(Punctuation.BAD);
-			break;
-		case 3:
-			createFilm.setPuntuation(Punctuation.GOOD);
-			break;
-		case 4:
-			createFilm.setPuntuation(Punctuation.VERYGOOD);
-			break;
-		case 5:
-			createFilm.setPuntuation(Punctuation.EXCELENT);
-			break;
-		}
-
+		optionPuntuation(optionPuntiation,createFilm);
 		/*
 		 * once the desired data is inserted
 		 * we put in the Map
 		 */
 		listFilms.put(createFilm.getName(), createFilm);
-
 		/*
 		 * Once the map is updated, we overwrite the file
 		 */
 		File archivo = new File(Constant.FILE_NAME_FILMS);
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
+			//METHODS REFACTOR
 			writeFile(listFilms, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
@@ -168,6 +132,7 @@ public class FilmServiceImpl extends Service<Film> {
 		
 		do {
 			System.out.println("Enter the movie you want to find");
+			System.out.println("write exit to finish");
 			nameFlim = sc.nextLine();
 			
 			for (Map.Entry<String, Film> film : listFilms.entrySet()) {
@@ -204,18 +169,18 @@ public class FilmServiceImpl extends Service<Film> {
 		return filmsWhitList;
 	}
 	
-	
+	/*
+	 * method that orders by name
+	 */
 	@Override
 	public List<Film> orderByName() throws IOException {
-		List<Film> listOrder = new ArrayList<>();
 		Map<String, Film> listFilms = repository.readAll();
-		for (Map.Entry<String, Film> film : listFilms.entrySet()) {
-			listOrder.add(film.getValue());
-		}
+		//METHODS REFACTOR
+		List<Film> listOrder = createList(listFilms);
 
 		listOrder.sort(new Comparator<Film>() {
 			public int compare(Film puntuation1, Film puntuation2) {
-				return puntuation1.getName().compareTo(puntuation2.getName());
+				return puntuation1.getName().compareToIgnoreCase(puntuation2.getName());
 			}
 		});
 
@@ -252,48 +217,14 @@ public class FilmServiceImpl extends Service<Film> {
 		System.out.println("write the category");
 		System.out.println("1 TERROR, 2 LOVE, 3 FIGHTS, 4 ACTION, 5 DRAMA, 6 COMEDY");
 		int option = sc.nextInt();
-		switch (option) {
-		case 1:
-			updateFilm.setCategory(Category.TERROR);
-			break;
-		case 2:
-			updateFilm.setCategory(Category.LOVE);
-			break;
-		case 3:
-			updateFilm.setCategory(Category.FIGHTS);
-			break;
-		case 4:
-			updateFilm.setCategory(Category.ACTION);
-			break;
-		case 5:
-			updateFilm.setCategory(Category.DRAMA);
-			break;
-		case 6:
-			updateFilm.setCategory(Category.COMEDY);
-			break;
-		}
-
+		//METHODS REFACTOR
+		optionCategory(option,updateFilm);
+		
 		System.out.println("write the Puntuation");
 		System.out.println("1 VERY_BAD, 2  BAD, 3 GOOD, 4 VERYGOOD, 5 EXCELENT");
 		int optionPuntiation = sc.nextInt();
-		switch (optionPuntiation) {
-		case 1:
-			updateFilm.setPuntuation(Punctuation.VERY_BAD);
-			break;
-		case 2:
-			updateFilm.setPuntuation(Punctuation.BAD);
-			break;
-		case 3:
-			updateFilm.setPuntuation(Punctuation.GOOD);
-			break;
-		case 4:
-			updateFilm.setPuntuation(Punctuation.VERYGOOD);
-			break;
-		case 5:
-			updateFilm.setPuntuation(Punctuation.EXCELENT);
-			break;
-		}
-
+		//METHODS REFACTOR
+		optionPuntuation(optionPuntiation,updateFilm);
 		/*
 		 * once the desired data is inserted
 		 * we put in the Map
@@ -305,7 +236,7 @@ public class FilmServiceImpl extends Service<Film> {
 		 */
 		File archivo = new File(Constant.FILE_NAME_FILMS);
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
-
+			//METHODS REFACTOR
 			writeFile(listFilms, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
@@ -330,6 +261,7 @@ public class FilmServiceImpl extends Service<Film> {
 		listFilms.remove(nameFlim);
 		File archivo = new File(Constant.FILE_NAME_FILMS);
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
+			//METHODS REFACTOR
 			writeFile(listFilms, b);
 			System.out.println("deleted correcatmente");
 		} catch (IOException e) {
@@ -343,13 +275,9 @@ public class FilmServiceImpl extends Service<Film> {
 	 */
 	@Override
 	public List<Film> readAll() throws IOException {
-		Map<String, Film> filmsMap = repository.readAll();
-
-		List<Film> listOrder = new ArrayList<>();
-		for (Map.Entry<String, Film> film : filmsMap.entrySet()) {
-			listOrder.add(film.getValue());
-		}
-
+		Map<String, Film> listFilms = repository.readAll();
+		//METHODS REFACTOR
+		List<Film> listOrder = createList(listFilms);
 		return listOrder;
 	}
 
@@ -362,12 +290,9 @@ public class FilmServiceImpl extends Service<Film> {
 	 * and that returns a list
 	 */
 	public List<Film> orderByPuntuation() throws IOException {
-		List<Film> listOrder = new ArrayList<>();
 		Map<String, Film> listFilms = repository.readAll();
-		for (Map.Entry<String, Film> film : listFilms.entrySet()) {
-			listOrder.add(film.getValue());
-		}
-
+		//METHODS REFACTOR
+		List<Film> listOrder = createList(listFilms);
 		/*
 		 * we use compareTo 
 		 */
@@ -437,14 +362,57 @@ public class FilmServiceImpl extends Service<Film> {
 	 * METHODS REFACTOR
 	 *
 	 */
-
-	public int optionCategory(int option) {
-		return option;
+	private List<Film> createList(Map<String, Film> listFilms) {
+		List<Film> list= new ArrayList<>();
+		for (Map.Entry<String, Film> film : listFilms.entrySet()) {
+			list.add(film.getValue());
+		}
+		return list;
+	}
+	
+	
+	public void optionCategory(int optionCategory, Film film) {
+		switch (optionCategory) {
+		case 1:
+			film.setCategory(Category.TERROR);
+			break;
+		case 2:
+			film.setCategory(Category.LOVE);
+			break;
+		case 3:
+			film.setCategory(Category.FIGHTS);
+			break;
+		case 4:
+			film.setCategory(Category.ACTION);
+			break;
+		case 5:
+			film.setCategory(Category.DRAMA);
+			break;
+		case 6:
+			film.setCategory(Category.COMEDY);
+			break;
+		}
 
 	}
 
-	public int optionPuntuation(int option) {
-		return option;
+	public void optionPuntuation(int optionPuntiation, Film film) {
+		switch (optionPuntiation) {
+		case 1:
+			film.setPuntuation(Punctuation.VERY_BAD);
+			break;
+		case 2:
+			film.setPuntuation(Punctuation.BAD);
+			break;
+		case 3:
+			film.setPuntuation(Punctuation.GOOD);
+			break;
+		case 4:
+			film.setPuntuation(Punctuation.VERYGOOD);
+			break;
+		case 5:
+			film.setPuntuation(Punctuation.EXCELENT);
+			break;
+		}
 
 	}
 

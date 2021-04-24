@@ -1,8 +1,5 @@
 package app.data;
 
-import app.enums.Category;
-import app.enums.Punctuation;
-
 /*
  * The seasons class will be the smallest
  * class where we will only
@@ -37,7 +34,7 @@ public class Season {
 
 	@Override
 	public String toString() {
-		return "( " + name + ")";
+		return ""+ name + "";
 	}
 
 

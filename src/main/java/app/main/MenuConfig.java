@@ -36,26 +36,27 @@ public class MenuConfig {
 	public static SongController songsController = new SongController(songsService);
 
 	public static void printFilms() {
-		
+
 		Film film = new Film();
 		String name = null;
 		Scanner sc = new Scanner(System.in);
 
 		int select = 0;
 		do {
-			System.out.println("hello selec option");
-			System.out.println("1 readAll");
-			System.out.println("2 create");
-			System.out.println("3 orderByPuntuation");
-			System.out.println("4 delete");
-			System.out.println("5 update");
-			System.out.println("6 read");
-			System.out.println("7 findByCategory");
-			System.out.println("8 findByPuntuation");
-			System.out.println("9 orderByName");
-			System.out.println("10 createWhitList");
-			
+			System.out.println("***HELLO SELECT OPTION FILMS***");
+			System.out.println("1 Read all");
+			System.out.println("2 Create new film");
+			System.out.println("3 Order by puntuation");
+			System.out.println("4 Deleted film");
+			System.out.println("5 Update film");
+			System.out.println("6 Read by name");
+			System.out.println("7 Find by category");
+			System.out.println("8 Find by puntuation");
+			System.out.println("9 Order by name");
+			System.out.println("10 Create new whitList films");
+
 			select = sc.nextInt();
+			loading();
 			switch (select) {
 
 			case 1:
@@ -84,36 +85,96 @@ public class MenuConfig {
 				break;
 			case 9:
 				filmController.orderByName();
-				
+				break;
 			case 10:
 				filmController.createWhitList();
 				break;
 
 			}
+			System.out.println("________________");
+			System.out.println("");
 		} while (select != 0);
 
 	}
 
 	public static void printSeries() {
-		
-		Song song = new Song();
+
+		Serie serie = new Serie();
 		String name = null;
 		Scanner sc = new Scanner(System.in);
 		int select = 0;
 		do {
-			System.out.println("hello selec option");
-			System.out.println("1 readAll");
-			System.out.println("2 create");
-			System.out.println("3 orderByPuntuation");
-			System.out.println("4 delete");
-			System.out.println("5 update");
-			System.out.println("6 read");
-			System.out.println("3 orderByPuntuation");
+			System.out.println("***HELLO SELECT OPTION SERIES***");
+			System.out.println("1 Read all");
+			System.out.println("2 Create new serie");
+			System.out.println("3 Order by name");
+			System.out.println("4 Deleted serie");
+			System.out.println("5 Update serie");
+			System.out.println("6 Read by name");
+			System.out.println("7 Create new whitList serie");
+			System.out.println("8 Find by category");
+			System.out.println("9 Find by puntuation");
 			select = sc.nextInt();
 			switch (select) {
 
 			case 1:
 				serieController.readAll();
+				break;
+			case 2:
+				serieController.create(serie);
+				break;
+			case 3:
+				serieController.orderByName();
+				break;
+			case 4:
+				serieController.delete(serie);
+				break;
+			case 5:
+				serieController.update(serie);
+				break;
+			case 6:
+				serieController.read(name);
+				break;
+			case 7:
+				serieController.createWhitList();
+				break;
+			case 8:
+				serieController.findByCategory(name);
+				break;
+			case 9:
+				serieController.findByPuntuation(name);
+				break;
+
+			}
+			System.out.println("________________");
+			System.out.println("");
+		} while (select != 0);
+	}
+
+	public static void printSongs() {
+
+		Song song = new Song();
+		String name = null;
+		Scanner sc = new Scanner(System.in);
+		int select = 0;
+		do {
+			System.out.println("***HELLO SELECT OPTION SONG MUSIC***");
+			System.out.println("1 Read all");
+			System.out.println("2 Create new song");
+			System.out.println("3 Order by name");
+			System.out.println("4 Deleted song");
+			System.out.println("5 Update song");
+			System.out.println("6 Read by name song");
+			System.out.println("7 Create new whitList");
+			System.out.println("8 Find by name autor");
+			System.out.println("9 Order by name autor");
+			loading();
+
+			select = sc.nextInt();
+			switch (select) {
+
+			case 1:
+				songsController.readAll();
 				break;
 			case 2:
 				songsController.create(song);
@@ -130,60 +191,35 @@ public class MenuConfig {
 			case 6:
 				songsController.read(name);
 				break;
+			case 7:
+				songsController.createWhitList();
+				break;
+			case 8:
+				songsController.findByAutor(name);
+				break;
+			case 9:
+				songsController.orderByAutor();
+				break;
 
 			}
+			System.out.println("________________");
+			System.out.println("\n");
 		} while (select != 0);
 	}
 
-	public static void printSongs() {
-		
-		Song song = new Song();
-		String name = null;
-		Scanner sc = new Scanner(System.in);
-		int select = 0;
-		do {
-			System.out.println("hello selec option");
-			System.out.println("1 readAll");
-			System.out.println("2 create");
-			System.out.println("3 orderByName");
-			System.out.println("4 delete");
-			System.out.println("5 update");
-			System.out.println("6 read");
-			System.out.println("7 createWhitList");
-			System.out.println("8 findByAutor");
-			System.out.println("9 orderByAutor");
-			select = sc.nextInt();
-		switch (select) {
-
-		case 1:
-			songsController.readAll();
-			break;
-		case 2:
-			songsController.create(song);
-			break;
-		case 3:
-			songsController.orderByName();
-			break;
-		case 4:
-			songsController.delete(song);
-			break;
-		case 5:
-			songsController.update(song);
-			break;
-		case 6:
-			songsController.read(name);
-		case 7:
-			songsController.createWhitList();
-			break;
-		case 8:
-			songsController.findByAutor(name);;
-			break;
-		case 9:
-			songsController.orderByAutor();
-			break;
-
+	public static void loading() {
+		try {
+			System.out.println("loading");
+			for (int i = 0; i < 5; i++) {
+				Thread.sleep(1 * 200);
+				for (int j = 0; j < i; j++) {
+					System.out.print("_");
+				}
+			}
+			System.out.println();
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		}while(select!=0);
-}
+	}
 
 }

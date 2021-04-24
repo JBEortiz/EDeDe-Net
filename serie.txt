@@ -1,3 +1,8 @@
-Saul,2018,ACTION,EXCELENT,temporada 1:callejeros/temporada 2:rhr/temporada 3:agencia nueva
-Breaking bad,2018,ACTION,EXCELENT,temporada 1:callejeros/temporada 2:rhr/temporada 3:los malos 
-Dos hombres y medio,2018,ACTION,EXCELENT,temporada 1:callejeros/temporada 2:rhr/temporada 3:no lo hagas
+juanFrancisco,123,TERROR,EXCELENT,123e/123sd/123asdasd/asdasd/
+Padrinos 2,123,LOVE,VERY_BAD,qwe/asd/zxc/
+Padrinos 3,123,LOVE,VERY_BAD,qwe/asd/zxc/
+juan,asd,TERROR,VERY_BAD,asd/asd/
+aasdasdad,123,LOVE,VERY_BAD,qwe/asd/zxc/
+juanFrancisco2,123,TERROR,EXCELENT,123e/123sd/123asdasd/asdasd/
+juanFrancisco3,123,TERROR,EXCELENT,123e/123sd/123asdasd/asdasd/
+Padrinos,2061,LOVE,VERY_BAD,qwe/asd/zxc/
