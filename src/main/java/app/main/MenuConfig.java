@@ -54,6 +54,7 @@ public class MenuConfig {
 			System.out.println("8 Find by puntuation");
 			System.out.println("9 Order by name");
 			System.out.println("10 Create new whitList films");
+			System.out.println("11 HOME");
 
 			select = sc.nextInt();
 			loading();
@@ -89,6 +90,9 @@ public class MenuConfig {
 			case 10:
 				filmController.createWhitList();
 				break;
+			case 11:
+				App.swicht();
+				break;
 
 			}
 			System.out.println("________________");
@@ -114,6 +118,7 @@ public class MenuConfig {
 			System.out.println("7 Create new whitList serie");
 			System.out.println("8 Find by category");
 			System.out.println("9 Find by puntuation");
+			System.out.println("10 HOME");
 			select = sc.nextInt();
 			switch (select) {
 
@@ -144,6 +149,9 @@ public class MenuConfig {
 			case 9:
 				serieController.findByPuntuation(name);
 				break;
+			case 10:
+				App.swicht();
+				break;
 
 			}
 			System.out.println("________________");
@@ -168,6 +176,7 @@ public class MenuConfig {
 			System.out.println("7 Create new whitList");
 			System.out.println("8 Find by name autor");
 			System.out.println("9 Order by name autor");
+			System.out.println("10 HOME");
 			loading();
 
 			select = sc.nextInt();
@@ -200,7 +209,9 @@ public class MenuConfig {
 			case 9:
 				songsController.orderByAutor();
 				break;
-
+			case 10:
+				App.swicht();
+				break;
 			}
 			System.out.println("________________");
 			System.out.println("\n");

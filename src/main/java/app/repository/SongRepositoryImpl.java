@@ -94,7 +94,7 @@ public class SongRepositoryImpl implements IGenericRepository<Song, String> {
 				song.setDuration(value[2]);
 				songs.put(song.getName(), song);
 			} else {
-				input = "no hay Song disponibles";
+				input = "Music not available the database is empty";
 				System.out.println(input);
 			}
 		}

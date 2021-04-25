@@ -8,7 +8,7 @@ import app.data.Serie;
 import app.service.SerieServiceImpl;
 
 public class SerieController extends Controller<Serie> {
-	
+
 	private SerieServiceImpl service;
 
 	public SerieController(SerieServiceImpl service) {
@@ -28,7 +28,7 @@ public class SerieController extends Controller<Serie> {
 			System.out.println("Problem creating the serie");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -40,30 +40,38 @@ public class SerieController extends Controller<Serie> {
 			System.out.println("The serie could not be read");
 			e.printStackTrace();
 		}
-		System.out.println(serie);
-		return serie;
+		if (serie != null) {
+			System.out.println(serie);
+			return serie;
+		} else {
+			return new Serie();
+		}
+
 	}
 
 	@Override
-	public void update(Serie t) {
+	public void update(Serie serie) {
 		try {
-			service.update(t);
+			service.update(serie);
 		} catch (IOException e) {
 			System.out.println("The desired serie could not be modified");
 			e.printStackTrace();
 		}
-		
+		if (serie != null) {
+			System.out.println(serie);
+		}
+
 	}
 
 	@Override
-	public void delete(Serie t) {
+	public void delete(Serie serie) {
 		try {
-			service.delete(t);
+			service.delete(serie);
 		} catch (IOException e) {
-			System.out.println("The desired movie could not be deleted");
+			System.out.println("The desired serie could not be deleted");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -71,17 +79,17 @@ public class SerieController extends Controller<Serie> {
 		List<Serie> serieWhitList = new ArrayList<>();
 		try {
 			serieWhitList = service.createWhitList();
-			
+
 		} catch (IOException e) {
-			System.out.println("esto no va muy bien ");
+			System.out.println("WhitList not fout ");
 			e.printStackTrace();
 		}
-		if(!serieWhitList.isEmpty()) {
-			serieWhitList.forEach(serie->System.out.println(serie.toString()));
-		}else{
-			System.out.println("la lista esta vacia");
+		if (!serieWhitList.isEmpty()) {
+			serieWhitList.forEach(serie -> System.out.println(serie.toString()));
+		} else {
+			System.out.println("WhitList it's empty");
 		}
-		
+
 	}
 
 	@Override
@@ -93,10 +101,10 @@ public class SerieController extends Controller<Serie> {
 			System.out.println("Error when ordering");
 			e.printStackTrace();
 		}
-		if(!seriesOrder.isEmpty()) {
-			seriesOrder.forEach(film->System.out.println(film.toString()));
-		}else{
-			System.out.println("la lista esta vacia");
+		if (!seriesOrder.isEmpty()) {
+			seriesOrder.forEach(film -> System.out.println(film.toString()));
+		} else {
+			System.out.println("list it's empty");
 		}
 	}
 
@@ -105,47 +113,61 @@ public class SerieController extends Controller<Serie> {
 		List<Serie> series = null;
 		try {
 			series = service.readAll();
-			for (Serie serie : series) {
-				System.out.println(serie);
-			}
+
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return series;
+		if (!series.isEmpty()) {
+			series.forEach(film -> System.out.println(film.toString()));
+			return series;
+		} else {
+			System.out.println("list it's empty");
+			return new ArrayList<Serie>();
+		}
+
 	}
+
 	/*
 	 * methods that take all the data and put it in a list
 	 */
-	public List<Serie> findByCategory(String category){
+	public List<Serie> findByCategory(String category) {
 		List<Serie> series = null;
 		try {
 			series = service.findByCategory(category);
-			for (Serie serie : series) {
-				System.out.println(serie);
-			}
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return series;
+		if (!series.isEmpty()) {
+			series.forEach(film -> System.out.println(film.toString()));
+			return series;
+		} else {
+			System.out.println("list it's empty");
+			return new ArrayList<Serie>();
+		}
 	}
+
 	/*
 	 * methods that take all the data and put it in a list
 	 */
-	public List<Serie> findByPuntuation(String puntuation){
+	public List<Serie> findByPuntuation(String puntuation) {
 		List<Serie> series = null;
 		try {
 			series = service.findByPuntuation(puntuation);
-			for (Serie serie : series) {
-				System.out.println(serie);
-			}
 		} catch (IOException e) {
 			System.out.println("Error when find all");
 			e.printStackTrace();
 		}
-		return series;
+		if (!series.isEmpty()) {
+			series.forEach(film -> System.out.println(film.toString()));
+			return series;
+		} else {
+			System.out.println("list it's empty");
+			return new ArrayList<Serie>();
+		}
 	}
+
 	public SerieServiceImpl getService() {
 		return service;
 	}

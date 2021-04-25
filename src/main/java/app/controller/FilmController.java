@@ -81,13 +81,13 @@ public class FilmController extends Controller<Film> {
 			filmsWhitList = service.createWhitList();
 			
 		} catch (IOException e) {
-			System.out.println("esto no va muy bien ");
+			System.out.println("WhitList not fount ");
 			e.printStackTrace();
 		}
 		if(!filmsWhitList.isEmpty()) {
 			filmsWhitList.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("WhitList it's empty");
 		}
 
 	}
@@ -104,7 +104,7 @@ public class FilmController extends Controller<Film> {
 		if(!filmsOrder.isEmpty()) {
 			filmsOrder.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("List it's empty");
 		}
 		return filmsOrder;
 	}
@@ -121,7 +121,7 @@ public class FilmController extends Controller<Film> {
 		if(!films.isEmpty()) {
 			films.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("List it's empty");
 		}
 		return films;
 	}
@@ -139,7 +139,7 @@ public class FilmController extends Controller<Film> {
 		if(!films.isEmpty()) {
 			films.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("List it's empty");
 		}
 		
 	}
@@ -156,7 +156,7 @@ public class FilmController extends Controller<Film> {
 		if(!films.isEmpty()) {
 			films.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("List it's empty");
 		}
 		
 	}
@@ -173,7 +173,7 @@ public class FilmController extends Controller<Film> {
 		if(!films.isEmpty()) {
 			films.forEach(film->System.out.println(film.toString()));
 		}else{
-			System.out.println("la lista esta vacia");
+			System.out.println("List it's empty");
 		}
 		
 	}

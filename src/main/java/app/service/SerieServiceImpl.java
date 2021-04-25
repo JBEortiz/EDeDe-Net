@@ -46,7 +46,7 @@ public class SerieServiceImpl extends Service<Serie> {
 		
 		/*
 		 * We extract the data from the repository
-		 * to later update and add the new movie
+		 * to later update and add the new serie
 		 */
 		Map<String, Serie> listSeries = repository.readAll();
 
@@ -59,11 +59,17 @@ public class SerieServiceImpl extends Service<Serie> {
 		System.out.println("write the category");
 		System.out.println("1 TERROR, 2 LOVE, 3 FIGHTS, 4 ACTION, 5 DRAMA, 6 COMEDY");
 		int option = sc.nextInt();
+		/*
+		 * METHOD REFACTOR
+		 */
 		optionCategory(option,createSerie);
 
 		System.out.println("write the Puntuation");
 		System.out.println("1 VERY_BAD, 2  BAD, 3 GOOD, 4 VERYGOOD, 5 EXCELENT");
 		int optionPuntiation = sc.nextInt();
+		/*
+		 * METHOD REFACTOR
+		 */
 		optionPuntuation(optionPuntiation,createSerie);
 		String season="";
 		System.out.println("enter the number of seasons you want your series to have");
@@ -80,6 +86,9 @@ public class SerieServiceImpl extends Service<Serie> {
 		Writer formate = null;
 		File archivo = new File(Constant.FILE_NAME_SERIE);
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
+			/*
+			 * METHOD REFACTOR
+			 */
 			writeFile(listSeries,b,formate);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
@@ -175,7 +184,7 @@ public class SerieServiceImpl extends Service<Serie> {
 			listSerie.remove(nameSerie);
 			File archivo = new File(Constant.FILE_NAME_SERIE);
 			/*
-			 * escribimos en fichero
+			 * write if File
 			 */
 			try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
 				writeFile(listSerie,b,formate);
@@ -319,6 +328,9 @@ public class SerieServiceImpl extends Service<Serie> {
 
 		return findSeries;
 	}
+	/*
+	 * method REFACTOR selected
+	 */
 	public void optionCategory(int optionCategory, Serie serie) {
 		switch (optionCategory) {
 		case 1:
@@ -342,7 +354,9 @@ public class SerieServiceImpl extends Service<Serie> {
 		}
 
 	}
-
+	/*
+	 * method REFACTOR selected
+	 */
 	public void optionPuntuation(int optionPuntiation, Serie serie) {
 		switch (optionPuntiation) {
 		case 1:
@@ -382,7 +396,9 @@ public class SerieServiceImpl extends Service<Serie> {
 		b.close();
 		return b;
 	}
-	
+	/*
+	 * From map to lists
+	 */
 	private List<Serie> createList(Map<String, Serie> listSeries) {
 		List<Serie> list= new ArrayList<>();
 		for (Map.Entry<String, Serie> serie : listSeries.entrySet()) {

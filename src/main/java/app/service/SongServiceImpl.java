@@ -15,7 +15,10 @@ import app.data.Serie;
 import app.data.Song;
 import app.repository.SongRepositoryImpl;
 import app.utils.Constant;
-
+/*
+ * Class where all the business
+ * logic is inserted
+ */
 public class SongServiceImpl extends Service<Song>{
 
 	private SongRepositoryImpl repository;
@@ -30,10 +33,16 @@ public class SongServiceImpl extends Service<Song>{
 		super();
 	}
 
-
+	/*
+	 * method where we will include
+	 * the logic necessary to create a music
+	 */
 	@Override
    public void create(Song createSong) throws IOException {
-
+		/*
+		 * We extract the data from the repository
+		 * to later update and add the new music
+		 */
 		Map<String, Song> listSongs = repository.readAll();
 
 		Scanner sc = new Scanner(System.in);
@@ -46,30 +55,43 @@ public class SongServiceImpl extends Service<Song>{
 		listSongs.put(createSong.getName(), createSong);
 		File archivo = new File("song.txt");
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(archivo))) {
+			/*
+			 * METHOD REFACTOR
+			 */
 			writeFile(listSongs, b);
 			System.out.println("creado correcatmente");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	/*
+	 * in this method we search by the name
+	 */
 	@Override
 	public Song read(String name)throws IOException {
 		Scanner sc = new Scanner(System.in);
 		Song findSong = null;
 		System.out.println("Enter the song you want to find");
 		String nameSong = sc.nextLine();
-
+		/*
+		 * We extract the data from the repository
+		 * to later find the music
+		 */
 		Map<String, Song> listSongs = repository.readAll();
 		
 		findSong = listSongs.get(nameSong);
-		
-
+		/*
+		 * we extract by name and return that object
+		 */
 		return findSong;
 	}
 
 	
 	public List<Song> findByAutor(String name)throws IOException {
+		/*
+		 * It will ask for the desired data of the request to modify
+		 * and it will search for it
+		 */
 		Scanner sc = new Scanner(System.in);
 		List<Song> listSongs = new ArrayList<>();
 		System.out.println("By name the song you want to find");
@@ -89,11 +111,16 @@ public class SongServiceImpl extends Service<Song>{
 
 		return listSongs;
 	}
-	
+	/*
+	 * method that will sort by the desired score
+	 * and that returns a list
+	 */
 	public List<Song> orderByAutor() throws IOException {
 		Map<String, Song> listSongs = repository.readAll();
 		List<Song> listOrder = createList(listSongs);
-
+		/*
+		 * we use compareTo 
+		 */
 		listOrder.sort(new Comparator<Song>() {
 			public int compare(Song autor1, Song autor2) {
 				return autor1.getAutor().compareTo(autor2.getAutor());
@@ -102,9 +129,15 @@ public class SongServiceImpl extends Service<Song>{
 
 		return listOrder;
 	}
-	
+	/*
+	 * method modificy song music
+	 */
 	@Override
 	public void update(Song updateSong) throws IOException {
+		/*
+		 * It will ask for the desired data of the request to modify
+		 * and it will search for it
+		 */
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie you want to find");
 		String nameSong = sc.next();
@@ -127,13 +160,19 @@ public class SongServiceImpl extends Service<Song>{
 		}
 		
 	}
-
+	/*
+	 * in this method you will receive a music but 
+	 * we will search for it by name
+	 */
 	@Override
 	public void delete(Song t) throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie you want to find");
 		String nameSong = sc.nextLine();
-
+		/*
+		 * we bring the data
+		 * from the repository
+		 */
 		Map<String, Song> listSongs = repository.readAll();
 
 		listSongs.remove(nameSong);
@@ -146,7 +185,10 @@ public class SongServiceImpl extends Service<Song>{
 		}
 	}
 
-
+	/*
+	 * method that will sort by the desired score
+	 * and that returns a list
+	 */
 	@Override
 	public List<Song> orderByName() throws IOException {
 		Map<String, Song> listSongs = repository.readAll();
@@ -160,7 +202,9 @@ public class SongServiceImpl extends Service<Song>{
 		return listOrder;
 	}
 
-
+	/*
+	 * methods that take all the data and put it in a list
+	 */
 	@Override
 	public List<Song> readAll() throws IOException {
 		Map<String, Song> listSongs = repository.readAll();

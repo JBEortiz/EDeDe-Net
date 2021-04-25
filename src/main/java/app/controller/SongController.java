@@ -38,11 +38,16 @@ public class SongController extends Controller<Song> {
 			song = service.read(name);
 			
 		} catch (IOException e) {
+			System.out.println("find not fount");
 			e.printStackTrace();
 		}
+		if(song!=null) {
+			System.out.println(song);
+			return song;
+		}else {
+			return new Song();
+		}
 		
-		System.out.println(song);
-		return song;
 	}
 
 	public void findByAutor(String name) {
@@ -51,14 +56,14 @@ public class SongController extends Controller<Song> {
 		try {
 			findByAutor = service.findByAutor(name);
 		} catch (IOException e) {
-			System.out.println("esto no va muy bien ");
+			System.out.println("find not fount ");
 			e.printStackTrace();
 		}
 
 		if (!findByAutor.isEmpty()) {
 			findByAutor.forEach(song -> System.out.println(song.toString()));
 		} else {
-			System.out.println("no se ha encontrado");
+			System.out.println("list it's empty");
 		}
 	}
 
@@ -75,7 +80,7 @@ public class SongController extends Controller<Song> {
 		if (!songs.isEmpty()) {
 			songs.forEach(song -> System.out.println(song.getAutor()+" "+song.getName()));
 		} else {
-			System.out.println("no se ha encontrado");
+			System.out.println("list it's empty");
 		}
 	}
 
@@ -108,14 +113,14 @@ public class SongController extends Controller<Song> {
 			songs = service.createWhitList();
 
 		} catch (IOException e) {
-			System.out.println("esto no va muy bien ");
+			System.out.println("WhitList error");
 			e.printStackTrace();
 		}
 
 		if (!songs.isEmpty()) {
 			songs.forEach(song -> System.out.println(song.toString()));
 		} else {
-			System.out.println("no se ha encontrado");
+			System.out.println("WhitList it's empty");
 		}
 	}
 
@@ -131,7 +136,7 @@ public class SongController extends Controller<Song> {
 		if (!songsOrder.isEmpty()) {
 			songsOrder.forEach(song -> System.out.println(song.toString()));
 		} else {
-			System.out.println("no se ha encontrado");
+			System.out.println("list it's empty");
 		}
 	}
 
@@ -149,8 +154,8 @@ public class SongController extends Controller<Song> {
 			songs.forEach(song -> System.out.println(song.toString()));
 			return songs;
 		} else {
-			System.out.println("no se ha encontrado");
-			return songs;
+			System.out.println("list it's empty");
+			return new ArrayList<Song>();
 		}
 		
 	}

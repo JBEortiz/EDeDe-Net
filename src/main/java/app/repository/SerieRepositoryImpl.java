@@ -122,7 +122,7 @@ public class SerieRepositoryImpl implements IGenericRepository<Serie, String> {
 				serie.setSeasons(seasonsAll);
 				series.put(serie.getName(), serie);
 			} else {
-				input = "no hay series disponibles";
+				input = "Series not available the database is empty";
 				System.out.println(input);
 			}
 		}

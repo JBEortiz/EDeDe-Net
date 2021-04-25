@@ -24,30 +24,37 @@ public class App {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println();
-		System.out.println("1 FILMS");
-		System.out.println("2 SERIES");
-		System.out.println("3 MUSIC SONG");
 
 	}
 
 	public static void swicht() {
-
 		Scanner sc = new Scanner(System.in);
-		int select = sc.nextInt();
-		MenuConfig.loading();
-		switch (select) {
+		int select =0;
+		do {
+			System.out.println();
+			System.out.println("1 FILMS");
+			System.out.println("2 SERIES");
+			System.out.println("3 MUSIC SONG");
+			System.out.println("4 EXIT");
+			select = sc.nextInt();
+			MenuConfig.loading();
+			switch (select) {
 
-		case 1:
-			MenuConfig.printFilms();
-			break;
-		case 2:
-			MenuConfig.printSeries();
-			break;
-		case 3:
-			MenuConfig.printSongs();
-			break;
+			case 1:
+				MenuConfig.printFilms();
+				break;
+			case 2:
+				MenuConfig.printSeries();
+				break;
+			case 3:
+				MenuConfig.printSongs();
+				break;
+			case 0:
+				break;
 
-		}
+
+			}
+		} while (select!=0);
+		
 	}
 }
