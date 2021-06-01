@@ -12,5 +12,8 @@ public class Constant {
 	public static String EXTENSION=".txt";
 	
 	public static String LINE_BREAK="\n";
+	
+	
+	
 
 }
